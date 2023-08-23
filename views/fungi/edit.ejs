@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit fungus</title>
+</head>
+
+<body>
+    <form action="/fungi/<%=fungus._id%>?_method=PUT" method="POST">
+        <div>
+            <label for="variety">Variety</label>
+            <input type="text" id="variety" name="fungus[variety]" value="<%=fungus.variety %>">
+        </div>
+        <button>Edit Fungus</button>
+    </form>
+    <footer><a href="/fungi/<%=fungus._id%>">Back to fungus</a></footer>
+</body>
+
+</html>
