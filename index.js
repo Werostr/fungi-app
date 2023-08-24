@@ -1,10 +1,11 @@
 // npm init -y
-// npm i express mongoose ejs path method-override
+// npm i express mongoose ejs path method-override ejs-mate
 
 const express = require('express');
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
+const ejsMate = require('ejs-mate');
 const methodOverride = require("method-override");
 const Fungus = require('./models/fungus');
 
@@ -16,6 +17,7 @@ db.once('open', () => {
     console.log("DATABASE CONNECTED");
 });
 
+app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 

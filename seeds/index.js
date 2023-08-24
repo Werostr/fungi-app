@@ -17,7 +17,8 @@ const seedDB = async () => {
             variety: `${varieties[i].variety}`,
             poisonous: `${varieties[i].poisonous}`,
             description: `${varieties[i].description}`,
-            location: `${varieties[i].location}`,
+            city: `${varieties[i].city}`,
+            country: `${varieties[i].country}`,
             image: `${varieties[i].image}`
         });
         await f.save();

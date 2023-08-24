@@ -1,28 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('./layouts/boilerplate') %>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <img src="<%=fungus.image %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%=fungus.variety %>
+                    </h5>
+                    <p class="card-text">
+                        <%=fungus.description%>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <%=fungus.poisonous%>
+                    </li>
+                    <li class="list-group-item text-muted">
+                        <%= fungus.country %>,
+                            <%= fungus.city %>
+                    </li>
+                </ul>
+                <div class="card-body">
+                    <a class="card-link btn btn-info" href="/fungi/<%=fungus._id%>/edit">Edit</a>
+                    <form class="d-inline" action="/fungi/<%=fungus._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">DELETE</button>
+                    </form>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show</title>
-</head>
-
-<body>
-    <h1>
-        <%=fungus.variety %>
-    </h1>
-    <h2>
-        <%=fungus.poisonous %>
-
-    </h2>
-    <p><a href="/fungi/<%=fungus._id%>/edit">Edit</a></p>
-    <p>
-    <form action="/fungi/<%=fungus._id%>?_method=DELETE" method="POST">
-        <button>DELETE</button>
-    </form>
-    </p>
-    <footer><a href="/fungi">All Fungi</a></footer>
-
-</body>
-
-</html>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
+        </div>
+    </div>

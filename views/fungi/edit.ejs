@@ -1,21 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit fungus</title>
-</head>
-
-<body>
-    <form action="/fungi/<%=fungus._id%>?_method=PUT" method="POST">
-        <div>
-            <label for="variety">Variety</label>
-            <input type="text" id="variety" name="fungus[variety]" value="<%=fungus.variety %>">
+<% layout('./layouts/boilerplate') %>
+    <div class="row">
+        <h1 class="text-center">New Fungus</h1>
+        <div class="col-6 offset-3">
+            <form action="/fungi/<%=fungus._id%>?_method=PUT" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="variety">Variety</label>
+                    <input class="form-control" type="text" id="variety" name="fungus[variety]"
+                        value="<%=fungus.variety %>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="country">Country</label>
+                    <input class="form-control" type="text" id="country" name="fungus[country]"
+                        value="<%=fungus.country %>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="city">City</label>
+                    <input class="form-control" type="text" id="city" name="fungus[city]" value="<%=fungus.city %>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="description"
+                        name="fungus[description]"><%=fungus.description %></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image URL</label>
+                    <input class="form-control" type="text" id="image" name="fungus[image]" value="<%=fungus.image %>">
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="poisonous">Poisonous</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option value='true'>true</option>
+                        <option value="false">false</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-info">Update</button>
+                </div>
+            </form>
+            <a href="/fungi/<%=fungus._id%>">Back to fungus</a>
         </div>
-        <button>Edit Fungus</button>
-    </form>
-    <footer><a href="/fungi/<%=fungus._id%>">Back to fungus</a></footer>
-</body>
-
-</html>
+    </div>
