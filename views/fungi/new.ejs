@@ -2,32 +2,48 @@
     <div class="row">
         <h1 class="text-center">New Fungus</h1>
         <div class="col-6 offset-3">
-            <form action="/fungi" method="POST">
+            <form action="/fungi" method="POST" novalidate class="needs-validation">
                 <div class="mb-3">
                     <label class="form-label" for="variety">Variety</label>
-                    <input class="form-control" type="text" id="variety" name="fungus[variety]">
+                    <input class="form-control" type="text" id="variety" name="fungus[variety]" required>
+                    <div class="valid-feedback">
+                        Nice
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="country">Country</label>
-                    <input class="form-control" type="text" id="country" name="fungus[country]">
+                    <input class="form-control" type="text" id="country" name="fungus[country]" required>
+                    <div class="valid-feedback">
+                        Nice
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="city">City</label>
-                    <input class="form-control" type="text" id="city" name="fungus[city]">
+                    <input class="form-control" type="text" id="city" name="fungus[city]" required>
+                    <div class="valid-feedback">
+                        Nice
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control" type="text" id="description" name="fungus[description]"></textarea>
+                    <textarea class="form-control" type="text" id="description" name="fungus[description]"
+                        required></textarea>
+                    <div class="valid-feedback">
+                        Nice
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="image">Image URL</label>
-                    <input class="form-control" type="text" id="image" name="fungus[image]">
+                    <input class="form-control" type="text" id="image" name="fungus[image]" required>
+                    <div class="valid-feedback">
+                        Nice
+                    </div>
                 </div>
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="poisonous">Poisonous</label>
-                    <select class="form-select" id="inputGroupSelect01">
-                        <option value='true'>Yes</option>
+                    <select class="form-select" id="poisonous" name="fungus[poisonous]" required>
                         <option value="false">No</option>
+                        <option value="true">Yes</option>
                     </select>
                 </div>
                 <div class="mb-3">

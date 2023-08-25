@@ -5,7 +5,7 @@ const FungusSchema = new Schema({
     variety: String,
     poisonous: Boolean,
     description: String,
-    city: String,
+    city: Number,
     country: String,
     image: String
 });
