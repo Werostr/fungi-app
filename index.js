@@ -81,6 +81,10 @@ app.delete('/fungi/:id', catchAsync(async (req, res) => {
     res.redirect('/fungi');
 }));
 
+app.post('/fungi/:id/reviews', catchAsync(async (req, res) => {
+    res.send('wef');
+}));
+
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404));
 });

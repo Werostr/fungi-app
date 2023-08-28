@@ -24,5 +24,4 @@ const seedDB = async () => {
     await f.save();
   }
 };
-
 seedDB();

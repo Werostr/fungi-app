@@ -7,7 +7,13 @@ const FungusSchema = new Schema({
     description: String,
     city: Number,
     country: String,
-    image: String
+    image: String,
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Review'
+        }
+    ]
 });
 
 module.exports = mongoose.model("Fungus", FungusSchema);
