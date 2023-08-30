@@ -24,6 +24,7 @@ router.post('/', ratingValidation, catchAsync(async (req, res) => {
     fungus.reviews.push(review);
     await review.save();
     await fungus.save();
+    req.flash('success', 'Created new review');
     res.redirect(`/fungi/${fungus._id}`);
 }));
 
@@ -31,6 +32,7 @@ router.delete('/:reviewId', catchAsync(async (req, res) => {
     const { id, reviewId } = req.params;
     await Fungus.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
+    req.flash('success', "Deleted review");
     res.redirect(`/fungi/${id}`);
 }));
 
