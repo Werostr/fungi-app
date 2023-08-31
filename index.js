@@ -1,6 +1,6 @@
 // npm init -y
 // npm i express mongoose ejs path method-override ejs-mate joi express-session
-// connect-flash
+// connect-flash bcrypt passport passport-local passport-local-mongoose
 
 const express = require('express');
 const app = express();
@@ -11,9 +11,13 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const methodOverride = require("method-override");
 const ExpressError = require('./utils/ExpressError');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require("./models/user");
 
-const fungi = require('./routes/fungi');
-const reviews = require('./routes/reviews');
+const usersRoutes = require('./routes/users');
+const fungiRoutes = require('./routes/fungi');
+const reviewsRoutes = require('./routes/reviews');
 
 mongoose.connect('mongodb://127.0.0.1:27017/fungi-app');
 
@@ -44,14 +48,22 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
 });
 
-app.use('/fungi', fungi);
-app.use('/fungi/:id/reviews', reviews);
+app.use('/', usersRoutes);
+app.use('/fungi', fungiRoutes);
+app.use('/fungi/:id/reviews', reviewsRoutes);
 
 app.get('/', (req, res) => {
     res.render('home');
