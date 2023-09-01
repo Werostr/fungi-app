@@ -20,6 +20,7 @@ const seedDB = async () => {
       city: `${varieties[i].city}`,
       country: `${varieties[i].country}`,
       image: `${varieties[i].image}`,
+      author: `${varieties[i].author}`,
     });
     await f.save();
   }

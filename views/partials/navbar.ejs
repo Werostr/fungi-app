@@ -11,6 +11,14 @@
                 <a class="nav-link" href="/fungi">Fungi</a>
                 <a class="nav-link" href="/fungi/new">New Fungus</a>
             </div>
+            <div class="navbar-nav ms-auto">
+                <% if(!currentUser) { %>
+                    <a href="/login" class="nav-link">log in</a>
+                    <a href="/register" class="nav-link">sign up</a>
+                    <% } else {%>
+                        <a href="/logout" class="nav-link">log out</a>
+                        <% } %>
+            </div>
         </div>
     </div>
 </nav>

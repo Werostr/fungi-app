@@ -4,21 +4,11 @@ const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
 const Fungus = require('../models/fungus');
 const Review = require('../models/review');
-const { reviewSchema } = require('../schemas');
+const { reviewValidation } = require('../middleware');
 
 
-const ratingValidation = (req, res, next) => {
 
-    const { error } = reviewSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',');
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-};
-
-router.post('/', ratingValidation, catchAsync(async (req, res) => {
+router.post('/', reviewValidation, catchAsync(async (req, res) => {
     const fungus = await Fungus.findById(req.params.id);
     const review = new Review(req.body.review);
     fungus.reviews.push(review);
