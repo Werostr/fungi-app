@@ -19,7 +19,16 @@ const seedDB = async () => {
       description: `${varieties[i].description}`,
       city: `${varieties[i].city}`,
       country: `${varieties[i].country}`,
-      image: `${varieties[i].image}`,
+      images: [
+        {
+          url: "https://res.cloudinary.com/dhxufgysz/image/upload/v1693849442/FungiApp/vpsi8jn9qotbbr9fohs7.jpg",
+          filename: "FungiApp/vpsi8jn9qotbbr9fohs7",
+        },
+        {
+          url: "https://res.cloudinary.com/dhxufgysz/image/upload/v1693849443/FungiApp/nbgqeryksusczj31l5x2.jpg",
+          filename: "FungiApp/nbgqeryksusczj31l5x2",
+        },
+      ],
       author: `${varieties[i].author}`,
     });
     await f.save();

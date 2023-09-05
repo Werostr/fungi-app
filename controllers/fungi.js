@@ -1,4 +1,5 @@
 const Fungus = require("../models/fungus");
+const { cloudinary } = require("../cloudinary");
 
 module.exports.index = async (req, res) => {
   const fungi = await Fungus.find({});
@@ -11,9 +12,10 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.createFungus = async (req, res, next) => {
   const fungus = new Fungus(req.body.fungus);
+  fungus.images = req.files.map((f) => ({ url: f.path, filename: f.filename }));
   fungus.author = req.user._id;
   await fungus.save();
-  req.flash("success", "Succesfully made");
+  req.flash("success", "Successfully made");
   res.redirect(`fungi/${fungus._id}`);
 };
 
@@ -41,6 +43,17 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updateFungus = async (req, res) => {
   const { id } = req.params;
   const fungus = await Fungus.findByIdAndUpdate(id, { ...req.body.fungus });
+  const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+  fungus.images.push(...imgs);
+  await fungus.save();
+  if (req.body.deleteImages) {
+    for (let filename of req.body.deleteImages) {
+      await cloudinary.uploader.destroy(filename);
+    }
+    await fungus.updateOne({
+      $pull: { images: { filename: { $in: req.body.deleteImages } } },
+    });
+  }
   req.flash("success", "Successfully updated");
   res.redirect(`/fungi/${fungus._id}`);
 };
