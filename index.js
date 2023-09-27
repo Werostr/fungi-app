@@ -1,7 +1,7 @@
 // npm init -y
-// npm i express mongoose ejs path method-override ejs-mate joi express-session
+// npm install express mongoose ejs path method-override ejs-mate joi express-session
 // connect-flash bcrypt passport passport-local passport-local-mongoose multer
-// dotenv cloudinary multer-storage-cloudinary
+// dotenv cloudinary multer-storage-cloudinary @mapbox/mapbox-sdk
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();

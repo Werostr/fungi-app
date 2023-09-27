@@ -11,23 +11,43 @@ ImageSchema.virtual("thumbnail").get(function () {
   return this.url.replace("/upload", "/upload/w_200");
 });
 
-const FungusSchema = new Schema({
-  variety: String,
-  poisonous: Boolean,
-  description: String,
-  city: Number,
-  country: String,
-  images: [ImageSchema],
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
-  reviews: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Review",
+const opts = { toJSON: { virtuals: true } };
+
+const FungusSchema = new Schema(
+  {
+    variety: String,
+    poisonous: Boolean,
+    description: String,
+    city: String,
+    country: String,
+    images: [ImageSchema],
+    geometry: {
+      type: {
+        type: String,
+        enum: ["Point"],
+        required: true,
+      },
+      coordinates: {
+        type: [Number],
+        required: true,
+      },
     },
-  ],
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Review",
+      },
+    ],
+  },
+  opts
+);
+
+FungusSchema.virtual("properties.popUpMarkup").get(function () {
+  return `<a href="/fungi/${this._id}">${this.variety}</a>`;
 });
 
 FungusSchema.post("findOneAndDelete", async function (doc) {

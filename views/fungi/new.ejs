@@ -1,86 +1,90 @@
 <% layout('./layouts/boilerplate') %>
 <div class="row">
   <h1 class="text-center">New Fungus</h1>
-  <div class="col-6 offset-3">
-    <form
-      action="/fungi"
-      method="POST"
-      novalidate
-      class="needs-validation"
-      enctype="multipart/form-data"
-    >
-      <div class="mb-3">
-        <label class="form-label" for="variety">Variety</label>
-        <input
-          class="form-control"
-          type="text"
-          id="variety"
-          name="fungus[variety]"
-          required
-        />
-        <div class="valid-feedback">Nice</div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="country">Country</label>
-        <input
-          class="form-control"
-          type="text"
-          id="country"
-          name="fungus[country]"
-          required
-        />
-        <div class="valid-feedback">Nice</div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="city">City</label>
-        <input
-          class="form-control"
-          type="text"
-          id="city"
-          name="fungus[city]"
-          required
-        />
-        <div class="valid-feedback">Nice</div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="description">Description</label>
-        <textarea
-          class="form-control"
-          type="text"
-          id="description"
-          name="fungus[description]"
-          required
-        ></textarea>
-        <div class="valid-feedback">Nice</div>
-      </div>
-      <div class="input-group mb-3">
-        <label class="input-group-text" for="poisonous">Poisonous</label>
-        <select
-          class="form-select"
-          id="poisonous"
-          name="fungus[poisonous]"
-          required
+  <div class="col-md-6 offset-md-3">
+    <div class="card shadow">
+      <div class="card-body">
+        <form
+          action="/fungi"
+          method="POST"
+          novalidate
+          class="needs-validation"
+          enctype="multipart/form-data"
         >
-          <option value="false">No</option>
-          <option value="true">Yes</option>
-        </select>
+          <div class="mb-3">
+            <label class="form-label" for="variety">Variety</label>
+            <input
+              class="form-control"
+              type="text"
+              id="variety"
+              name="fungus[variety]"
+              required
+            />
+            <div class="valid-feedback">Nice</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="country">Country</label>
+            <input
+              class="form-control"
+              type="text"
+              id="country"
+              name="fungus[country]"
+              required
+            />
+            <div class="valid-feedback">Nice</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="city">City</label>
+            <input
+              class="form-control"
+              type="text"
+              id="city"
+              name="fungus[city]"
+              required
+            />
+            <div class="valid-feedback">Nice</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="description">Description</label>
+            <textarea
+              class="form-control"
+              type="text"
+              id="description"
+              name="fungus[description]"
+              required
+            ></textarea>
+            <div class="valid-feedback">Nice</div>
+          </div>
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="poisonous">Poisonous</label>
+            <select
+              class="form-select"
+              id="poisonous"
+              name="fungus[poisonous]"
+              required
+            >
+              <option value="false">No</option>
+              <option value="true">Yes</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label custom-file-label"
+              >Add Images</label
+            >
+            <input
+              class="form-control custom-file"
+              type="file"
+              id="image"
+              name="image"
+              multiple
+            />
+          </div>
+          <div class="mb-3">
+            <button class="btn btn-success">Save</button>
+          </div>
+        </form>
+        <a href="/fungi">All fungi</a>
       </div>
-      <div class="mb-3">
-        <label for="image" class="form-label custom-file-label"
-          >Add Images</label
-        >
-        <input
-          class="form-control custom-file"
-          type="file"
-          id="image"
-          name="image"
-          multiple
-        />
-      </div>
-      <div class="mb-3">
-        <button class="btn btn-success">Save</button>
-      </div>
-    </form>
-    <a href="/fungi">All fungi</a>
+    </div>
   </div>
 </div>

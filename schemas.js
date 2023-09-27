@@ -3,7 +3,7 @@ const Joi = require("joi");
 module.exports.fungusSchema = Joi.object({
   fungus: Joi.object({
     variety: Joi.string().required(),
-    city: Joi.number().required(),
+    city: Joi.string().required(),
     country: Joi.string().required(),
     //image: Joi.string().required(),
     description: Joi.string().required(),

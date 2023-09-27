@@ -19,6 +19,13 @@ const seedDB = async () => {
       description: `${varieties[i].description}`,
       city: `${varieties[i].city}`,
       country: `${varieties[i].country}`,
+      geometry: {
+        type: "Point",
+        coordinates: [
+          `${varieties[i].coordinates[0]}`,
+          `${varieties[i].coordinates[1]}`,
+        ],
+      },
       images: [
         {
           url: "https://res.cloudinary.com/dhxufgysz/image/upload/v1693849442/FungiApp/vpsi8jn9qotbbr9fohs7.jpg",

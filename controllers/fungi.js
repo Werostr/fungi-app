@@ -1,4 +1,7 @@
 const Fungus = require("../models/fungus");
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require("../cloudinary");
 
 module.exports.index = async (req, res) => {
@@ -11,7 +14,14 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createFungus = async (req, res, next) => {
+  const geoData = await geocoder
+    .forwardGeocode({
+      query: `${req.body.fungus.city} ${req.body.fungus.country}`,
+      limit: 1,
+    })
+    .send();
   const fungus = new Fungus(req.body.fungus);
+  fungus.geometry = geoData.body.features[0].geometry;
   fungus.images = req.files.map((f) => ({ url: f.path, filename: f.filename }));
   fungus.author = req.user._id;
   await fungus.save();
