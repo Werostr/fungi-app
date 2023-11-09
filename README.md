@@ -10,6 +10,13 @@ After creating fungus the place when users found them is marked on the map of th
 
 App was made using JavaScript, Node.js and MongoDB.
 
+![Home page](https://github.com/Werostr/fungi-app/blob/main/pictures/Home.png)
+![Index page](https://github.com/Werostr/fungi-app/blob/main/pictures/Index.png)
+![Index page](https://github.com/Werostr/fungi-app/blob/main/pictures/Index2.png)
+![New page](https://github.com/Werostr/fungi-app/blob/main/pictures/New.png)
+![Show page](https://github.com/Werostr/fungi-app/blob/main/pictures/Show2.png)
+![Login page](https://github.com/Werostr/fungi-app/blob/main/pictures/Login.png)
+
 ### Author
 
 Weronika Ostrowska
