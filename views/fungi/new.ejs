@@ -1,9 +1,18 @@
 <% layout('./layouts/boilerplate') %>
 <div class="row">
-  <h1 class="text-center">New Fungus</h1>
+  <h1 class="text-center">Share Your &#127812 with us</h1>
   <div class="col-md-6 offset-md-3">
     <div class="card shadow">
-      <div class="card-body">
+      <div
+        class="card-body p-3 rounded"
+        style="
+          background-image:linear-gradient(
+            rgba(255, 255, 255, 0.2),
+            rgba(255, 255, 255, 0.2)
+          ),
+            url('https://images.unsplash.com/photo-1585758942414-7a30b116f2af?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        color: rgb(64, 14, 73); "
+      >
         <form
           action="/fungi"
           method="POST"
@@ -80,10 +89,9 @@
             />
           </div>
           <div class="mb-3">
-            <button class="btn btn-success">Save</button>
+            <button class="btn btn-light">Save</button>
           </div>
         </form>
-        <a href="/fungi">All fungi</a>
       </div>
     </div>
   </div>

@@ -24,6 +24,12 @@ module.exports.createFungus = async (req, res, next) => {
   fungus.geometry = geoData.body.features[0].geometry;
   fungus.images = req.files.map((f) => ({ url: f.path, filename: f.filename }));
   fungus.author = req.user._id;
+  if (fungus.images.length === 0) {
+    fungus.images = {
+      url: "https://res.cloudinary.com/dhxufgysz/image/upload/FungiApp/ipuuiwemxtasjuj8wxkm.jpg",
+      filename: "FungiApp/ipuuiwemxtasjuj8wxkm",
+    };
+  }
   await fungus.save();
   req.flash("success", "Successfully made");
   res.redirect(`fungi/${fungus._id}`);

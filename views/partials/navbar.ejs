@@ -1,4 +1,7 @@
-<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+<nav
+  class="navbar navbar-expand-lg sticky-top"
+  style="background-color: #cfa9f3"
+>
   <div class="container-fluid">
     <a class="navbar-brand" href="#">FungiElysium</a>
     <button
@@ -23,6 +26,7 @@
         <a href="/login" class="nav-link">log in</a>
         <a href="/register" class="nav-link">sign up</a>
         <% } else {%>
+        <a class="nav-link">Oh, hi <%=currentUser.username %>! </a>
         <a href="/logout" class="nav-link">log out</a>
         <% } %>
       </div>

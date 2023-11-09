@@ -1,28 +1,46 @@
 <% layout('./layouts/boilerplate') %>
-<div id="cluster-map"></div>
-<h1>All Fungi</h1>
-<div>
-  <a href="/fungi/new">New Fungus</a>
-</div>
-<div>
-  <% for (let fungus of fungi) {%>
-  <div class="card mb-3">
-    <div class="row">
-      <div class="col-md-4">
-        <img class="img-fluid" src="<%=fungus.images[0].url %>" alt="" />
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title"><%=fungus.variety %></h5>
-          <p class="card-text"><%= fungus.description %></p>
-          <p class="card-text">
-            <small class="text-dark">
-              <%= fungus.country %>, <%= fungus.city %>
-            </small>
-          </p>
-          <a class="btn btn-primary" href="fungi/<%=fungus._id %>"
-            >View <%=fungus.variety %></a
-          >
+<div class="mb-5" id="cluster-map"></div>
+<div class="col-8 offset-md-2">
+  <%if(fungi.length === 0){%>
+  <h1 class="p-5" style="color: rgb(146, 117, 117);">Oh no, it looks like we are out of Fungi &#127812</h1>
+  <% } %> <% for (let fungus of fungi) {%>
+  <div class="card shadow mb-3">
+    <div
+      class="card"
+      style="
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.2),
+            rgba(255, 255, 255, 0.2)
+          ),
+          url('https://images.unsplash.com/photo-1585758942414-7a30b116f2af?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      "
+    >
+      <div class="row">
+        <div class="col-md-5 align-self-center ">
+          <img
+            crossorigin="anonymous"
+            class="img-fluid "
+            src="<%=fungus.images[0].url %>"
+            alt=""
+            style="border-radius: 7px; opacity: 0.9;"
+          />
+        </div>
+        <div class="col-md-6">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%=fungus.variety %><% if(fungus.poisonous){%> &#9760;<% } %>
+            </h5>
+            <p class="card-text"><%= fungus.description %></p>
+            <hr />
+            <p class="card-text">
+              <small class="text-dark">
+                <%= fungus.country %>, <%= fungus.city %>
+              </small>
+            </p>
+            <a class="btn btn-primary" href="fungi/<%=fungus._id %>"
+              >View <%=fungus.variety %></a
+            >
+          </div>
         </div>
       </div>
     </div>

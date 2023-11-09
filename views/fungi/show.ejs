@@ -21,7 +21,7 @@
       <div class="carousel-inner rounded" >
         <% fungus.images.forEach((img,i) =>{ %>
         <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
-          <img src="<%= img.url %>" class="d-block w-100" alt="..." />
+          <img crossorigin="anonymous" src="<%= img.url %>" class="d-block w-100" alt="..." />
         </div>
         <% }) %>
       </div>
@@ -52,8 +52,8 @@
         <p class="card-text"><%=fungus.description%></p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><%=fungus.poisonous%></li>
-        <li class="list-group-item"><%=fungus.author.username%></li>
+        <li class="list-group-item"><% if(fungus.poisonous){%>&#9760;<%}else{%>&#127860;<% } %></li>
+        <li class="list-group-item">Added by: <%=fungus.author.username%></li>
         <li class="list-group-item text-muted">
           <%= fungus.country %>, <%= fungus.city %>
         </li>
@@ -76,8 +76,9 @@
     </div>
   </div>
   <div class="col-6">
-    <div id="map" style='width: 100%; height: 300px;'></div>
+    <div class="mb-3" id="map" style='width: 100%; height: 300px;'></div>
     <% if(currentUser) { %>
+      <div class="p-4" style="border: 1px dotted rgb(170, 105, 170);">
     <h2>Leave a review</h2>
     <form
       action="/fungi/<%=fungus._id%>/reviews"
@@ -120,14 +121,17 @@
       </div>
       <button class="btn btn-success">Submit</button>
     </form>
-    <% } %> <% for(let review of fungus.reviews){ %>
+    <h3 class="my-3">Comments</h3>
+    <% if(fungus.reviews.length === 0){%><h5 style="font-weight: lighter; color: rgb(146, 117, 117);">Nothing here yet &#127812</h5>
+    <% } %><% } %> <% for(let review of fungus.reviews){ %>
     <div class="card mb-3">
       <div class="card-body">
         <h6 class="card-subtittle mb-2 text-muted">
           <%=review.author.username %>
         </h6>
         <p class="starability-result" data-rating="<%=review.rating %>"></p>
-        <p class="card-text">Comment: <%=review.comment %></p>
+        <hr>
+        <p class="card-text"><%=review.comment %></p>
         <form
           action="/fungi/<%=fungus._id%>/reviews/<%=review._id%>?_method=DELETE"
           method="POST"
@@ -140,6 +144,7 @@
     </div>
     <% } %>
   </div>
+</div>
 </div>
 
 <script>
